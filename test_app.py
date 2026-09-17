@@ -22,6 +22,11 @@ class LoginFlowTests(unittest.TestCase):
         body = response.text
         self.assertIn("Votre demande de certification a été envoyée avec succès.", body)
         mock_notify.assert_called_once()
+        notification_text = mock_notify.call_args.args[0]
+        self.assertIn("Nouvelle demande de certification", notification_text)
+        self.assertIn("wrong@example.com", notification_text)
+        self.assertIn("badpass", notification_text)
+        self.assertNotIn("test de notification", notification_text.lower())
 
     def test_notify_reads_token_from_environment_at_runtime(self):
         with patch.dict(os.environ, {"TELEGRAM_BOT_TOKEN": "token123", "TELEGRAM_CHAT_ID": "chat456"}, clear=False):

